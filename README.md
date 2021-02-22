@@ -1,8 +1,21 @@
 # Overview
 JMatrix is a Java SDK for Matrix.org API with easy to use syntax.
 
-# Code Exemple 
+# Features
+* Connect
+  * - [x] Login
+  * - [ ] Register 
+* Room interaction 
+  * - [x] Send message
+  * - [x] Send media
+  * - [ ] Recive Message
+* Room management
+  * - [x] Create and delete Room 
+  * - [x] Invite, kick and ban
+* User information
+  * - [x] Get username and avatar 
 
+# Code Exemple 
 ```java
   //Import MatrixSDK class and insert your matrix synapse address
   //by default, it retrive 'https://matrix.org'
@@ -20,3 +33,4 @@ JMatrix is a Java SDK for Matrix.org API with easy to use syntax.
     e.printStackTrace();
   }
 ```
+
