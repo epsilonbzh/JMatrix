@@ -2,7 +2,6 @@ package fr.epsilonbzh.jmatrix;
 
 /** Media class is used for images,videos, and other files uploaded on the Matrix Server.
  * @author epsilonbzh
- *
  */
 public class Media {
 	private String mediaLink;

@@ -2,7 +2,6 @@ package fr.epsilonbzh.jmatrix;
 
 /** User class get informations on a given user
  * @author epsilonbzh
- *
  */
 public class User {
 	private MatrixClient client;

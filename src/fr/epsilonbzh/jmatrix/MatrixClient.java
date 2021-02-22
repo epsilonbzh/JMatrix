@@ -8,7 +8,6 @@ import fr.epsilonbzh.jmatrix.enums.MessageType;
 /**
  * @author epsilonbzh
  */
-
 public class MatrixClient extends MatrixSDK{
 	
 	private MatrixSDK sdk;

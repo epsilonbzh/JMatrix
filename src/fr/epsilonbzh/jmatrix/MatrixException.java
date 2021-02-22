@@ -1,12 +1,12 @@
 package fr.epsilonbzh.jmatrix;
 import java.io.BufferedReader;
-/**
- * @author epsilon
- */
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+/**
+ * @author epsilonbzh
+ */
 public class MatrixException extends IOException {
 
 	public MatrixException(InputStream errorStream) {

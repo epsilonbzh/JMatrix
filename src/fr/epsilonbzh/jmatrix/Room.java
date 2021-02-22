@@ -3,7 +3,9 @@ package fr.epsilonbzh.jmatrix;
 import java.util.ArrayList;
 
 import fr.epsilonbzh.jmatrix.enums.MessageType;
-
+/**
+ * @author epsilonbzh
+ */
 public class Room {
 	private String roomID;
 	private MatrixClient client;
