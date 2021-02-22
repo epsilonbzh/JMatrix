@@ -1,6 +1,11 @@
+# Eclipse files
 .classpath
-.directory
 .project
 .settings/
+
+#Dolphin files
+.directory
+
+#Binaries and Main class 
 bin/
 src/RunJMatrix.java
