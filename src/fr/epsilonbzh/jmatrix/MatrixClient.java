@@ -75,7 +75,7 @@ public class MatrixClient extends MatrixSDK{
 	 * @param topic Room's topic
 	 * @throws MatrixException
 	 */
-	public void createRoom(boolean isPublic,String name,String topic) throws MatrixException {
+	public Room createRoom(boolean isPublic,String name,String topic) throws MatrixException {
 		HashMap<String, String> args = new HashMap<String, String>();
 		args.put("name",name);
 		args.put("topic", topic);
@@ -89,15 +89,15 @@ public class MatrixClient extends MatrixSDK{
 		String response = sdk.RequestPOST(baseURL + "createRoom?access_token=" + token, args);
 		String[] content = response.split("\"");
 		System.out.println("[INFO] A new room has been created with id : " + content[3]);
+		return new Room(this, content[3]);
 	}
-	
 	/**
 	 * @param isPublic Room's visibility
 	 * @param name Room's name
 	 * @throws MatrixException
 	 */
-	public void createRoom(boolean isPublic,String name) throws MatrixException {
-		createRoom(isPublic, name, "");
+	public Room createRoom(boolean isPublic,String name) throws MatrixException {
+		return createRoom(isPublic, name, "");
 	}
 	
 	public ArrayList<Device> getDevices() throws MatrixException {
