@@ -202,22 +202,6 @@ public class MatrixClient extends MatrixSDK{
 				args.put("msgtype", "nic.custom.confetti");
 				args.put("body", message);
 				break;
-			//FIXME
-			case FILE:
-				args.put("msgtype", "m.file");
-				args.put("body", message);
-				args.put("url", message);
-				args.put("mimetype", "application/x-sh");
-				break;
-			//FIXME
-			case POOL:
-				args.put("msgtype", "org.matrix.options");
-				args.put("body", message);
-				args.put("type","org.matrix.poll");
-				args.put("label","Test");
-				args.put("value", "0.Test");
-				args.put("label","Issou");
-				args.put("value", "1.Issou");
 		}
 		sdk.RequestPOST(baseURL + "rooms/" + roomID + "/send/m.room.message?access_token=" + token, args);
 	}
