@@ -198,6 +198,10 @@ public class MatrixClient extends MatrixSDK{
 				args.put("body", message);
 				args.put("url", message);
 				break;
+			case CONFETTI:
+				args.put("msgtype", "nic.custom.confetti");
+				args.put("body", message);
+				break;
 			//FIXME
 			case FILE:
 				args.put("msgtype", "m.file");
