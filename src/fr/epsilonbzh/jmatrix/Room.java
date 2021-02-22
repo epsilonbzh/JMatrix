@@ -22,7 +22,7 @@ public String getRoomID() {
 @Deprecated
 public String[] getRoomTag() throws MatrixException {
 
-	String[] content = client.getRoomTag(client.getUserID(), this.roomID).split("");
+	String[] content = client.getRoomTag(client.getSelfID(), this.roomID).split("");
 	return content;
 }
 
