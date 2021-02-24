@@ -259,6 +259,19 @@ public class MatrixClient extends MatrixSDK{
 		HashMap<String, String> args = new HashMap<String, String>();
 		sdk.RequestPOST(baseURL + "rooms/" + roomID + "/leave?access_token=" + token,args);
 	}
+	
+	public ArrayList<Room> getJoinedRoom() throws MatrixException {
+		ArrayList<Room> joined_room = new ArrayList<Room>();
+		String[] roomlist = sdk.RequestGET(baseURL + "joined_rooms?access_token=" + token).split(",");
+		for(String elem : roomlist) {
+			elem = elem.replace("{\"joined_rooms\":[", "");
+			elem = elem.replace("]}", "");
+			elem = elem.replace("\"", "");
+			joined_room.add(new Room(this,elem));
+		}
+		return joined_room;
+		
+	}
 	@Deprecated
 	public String getEmail() throws MatrixException {
 			String response = sdk.RequestGET(baseURL + "account/3pid?access_token=" + token);
@@ -278,4 +291,5 @@ public class MatrixClient extends MatrixSDK{
 	public Room getRoomByID(String roomID) {
 		return new Room(this,roomID);
 	}
+	
 }
