@@ -272,13 +272,16 @@ public class MatrixClient extends MatrixSDK{
 		return joined_room;
 		
 	}
+	
+	protected String getEventDetails(Room room, String eventID) throws MatrixException {
+		String request = sdk.RequestGET(baseURL + "rooms/" + room.getRoomID() + "/event/" + eventID + "?access_token=" + token);
+		return request;
+	}
+	
 	@Deprecated
 	public String getEmail() throws MatrixException {
 			String response = sdk.RequestGET(baseURL + "account/3pid?access_token=" + token);
 			return response;
-		
-		
-	
 	}
 	
 	protected String isUserOnline(String userID) throws MatrixException {
