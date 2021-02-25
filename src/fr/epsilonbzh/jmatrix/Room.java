@@ -67,7 +67,26 @@ public class Room {
 	}
 	public void sendMessage(MessageType MessageType, String message) throws MatrixException {
 		client.sendMessage(this.roomID, MessageType, message);
+	}
+	
+	private String get(String key, int step) throws MatrixException {
+		String request = client.getRoomInfo(this.roomID);
+		String[] content = request.split("\"");
+		int i = 0;
+		String find = "";
+		for(String elem : content) {
+			if(elem.equals(key)) {
+				find = content[i+step];
+			}
+			i++;
 		}
+		return find;
+		
+	}
+	
+	public User getCreator() throws MatrixException {
+		return new User(this.client,get("creator", 2));
+	}
 
 
 }
