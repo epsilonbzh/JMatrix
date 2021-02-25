@@ -278,6 +278,11 @@ public class MatrixClient extends MatrixSDK{
 		return request;
 	}
 	
+	protected String getRoomInfo(String roomID) throws MatrixException {
+		String request = sdk.RequestGET(baseURL + "rooms/" + roomID + "/state?access_token=" + token);
+		return request;
+	}
+	
 	@Deprecated
 	public String getEmail() throws MatrixException {
 			String response = sdk.RequestGET(baseURL + "account/3pid?access_token=" + token);
