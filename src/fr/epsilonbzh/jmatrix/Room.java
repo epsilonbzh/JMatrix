@@ -87,6 +87,13 @@ public class Room {
 	public User getCreator() throws MatrixException {
 		return new User(this.client,get("creator", 2));
 	}
-
+	
+	public String getName() throws MatrixException {
+		return get("name", 2);
+	}
+	
+	public String getTopic() throws MatrixException {
+		return get("topic", 2);
+	}
 
 }
