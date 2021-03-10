@@ -22,7 +22,22 @@ public class Room {
 	public String getRoomID() {
 		return roomID;
 		}
-	
+	@Deprecated
+	public ArrayList<String> getRoomTag() throws MatrixException {
+		ArrayList<String> tags = new ArrayList<String>();
+		String[] content = client.getRoomTag(client.getSelfUser().getUserID(), this.roomID).split("\"");
+		for(String elem : content) {
+			switch(elem) {
+			case"m.lowpriority":
+				tags.add(elem);
+				break;
+			case"m.favourite":
+				tags.add(elem);
+				break;
+			}
+		}
+		return tags;
+	}
 
 	public ArrayList<User> getUserPresent() throws MatrixException {
 		return client.getUserPresentInRoom(roomID);
