@@ -28,7 +28,7 @@ JMatrix is a Java SDK for Matrix.org API with easy to use syntax.
   
   //Send a message in a room
   try {
-    client.getRoomByID("blablabla").sendMessage("Hello Word");
+    client.getRoomByID("blablabla").sendMessage("Hello World !");
   } catch (MatrixException e) {
     e.printStackTrace();
   }
