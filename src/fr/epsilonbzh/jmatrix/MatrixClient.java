@@ -293,9 +293,7 @@ public class MatrixClient extends MatrixSDK{
 			String response = sdk.RequestGET(baseURL + "presence/" + userID +  "/status?access_token=" + token);
 			return response;
 	}
-	protected MatrixSDK getAPI() {
-		return sdk;
-	}
+	
 	public Room getRoomByID(String roomID) {
 		return new Room(this,roomID);
 	}

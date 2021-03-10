@@ -5,7 +5,6 @@ package fr.epsilonbzh.jmatrix;
  */
 public class User {
 	private MatrixClient client;
-	private MatrixSDK api;
 	private String userID;
 	
 	/** User class is useful to get information on a particular user
@@ -15,7 +14,6 @@ public class User {
 	public User(MatrixClient client,String userID) {
 		this.userID = userID;
 		this.client = client;
-		this.api = client.getAPI();
 	}
 	/** Get User's ID, like \@exemple:matrix.org
 	 * @return UserID
@@ -28,7 +26,7 @@ public class User {
 	 * @throws MatrixException
 	 */
 	public String getDisplayName() throws MatrixException {
-		return api.getDisplayNameById(userID);
+		return client.getDisplayNameById(userID);
 	}
 
 	/** Get User's Icon
@@ -36,14 +34,13 @@ public class User {
 	 * @throws MatrixException
 	 */
 	public Media getAvatar() throws MatrixException {
-		return new Media(api, api.getAvatarUrlById(userID));
+		return new Media(client, client.getAvatarUrlById(userID));
 	}
 	/** Return true if the user is Online
 	 * @return true or false
 	 * @deprecated broken
 	 * @throws MatrixException
 	 */
-	
 	public boolean isOnline() throws MatrixException {
 		if(client.isUserOnline(userID).contains("offline")){
 			return false;
