@@ -32,10 +32,10 @@ public class MatrixClient extends MatrixSDK{
 		
 	}
 	
-	public String getSelfID() throws MatrixException{
+	public User getSelfUser() throws MatrixException{
 			String response = sdk.RequestGET(baseURL + "account/whoami?access_token=" + token);
 			String[] content = response.split("\"");
-			return content[3];
+			return new User(this,content[3]);
 		
 	}
 	/**
