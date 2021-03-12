@@ -79,6 +79,10 @@ public class Room {
 		client.sendMessage(this.roomID, MessageType, message);
 	}
 	
+	public ArrayList<Event> retriveEvent(int amount) throws MatrixException {
+		return client.getEventFromRoom(roomID, amount);
+	}
+	
 	private String get(String key, int step) throws MatrixException {
 		String request = client.getRoomInfo(this.roomID);
 		String[] content = request.split("\"");

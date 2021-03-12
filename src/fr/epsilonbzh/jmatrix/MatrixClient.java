@@ -3,6 +3,8 @@ package fr.epsilonbzh.jmatrix;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.naming.LimitExceededException;
+
 import fr.epsilonbzh.jmatrix.enums.MessageType;
 
 /**
@@ -258,6 +260,19 @@ public class MatrixClient extends MatrixSDK{
 	protected void leaveRoom(String roomID) throws MatrixException {
 		HashMap<String, String> args = new HashMap<String, String>();
 		sdk.RequestPOST(baseURL + "rooms/" + roomID + "/leave?access_token=" + token,args);
+	}
+	
+	protected ArrayList<Event> getEventFromRoom(String roomID,int amount) throws MatrixException {
+		ArrayList<Event> eventlist = new ArrayList<Event>();
+		String[] content = sdk.RequestGET(baseURL + "rooms/" + roomID + "/messages?from=s000_000_000&limit=" + amount + "&access_token=" + token).split("\"");
+		int i = 0;
+		for(String elem : content) {
+			if(elem.equals("event_id")) {
+				eventlist.add(new Event(new Room(this,roomID),content[i + 2]));
+			}
+			i++;
+		}
+		return eventlist;
 	}
 	
 	public ArrayList<Room> getJoinedRoom() throws MatrixException {
