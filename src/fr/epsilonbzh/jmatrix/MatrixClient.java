@@ -3,8 +3,6 @@ package fr.epsilonbzh.jmatrix;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import javax.naming.LimitExceededException;
-
 import fr.epsilonbzh.jmatrix.enums.MessageType;
 
 /**
