@@ -105,5 +105,16 @@ public class Room {
 	public String getTopic() throws MatrixException {
 		return get("topic", 2);
 	}
+	
+	public Media getIcon() throws MatrixException {
+		String icon = get("url", 2);
+		if(icon.startsWith("mxc://")) {
+			return new Media(this.client,get("url", 2));
+		}
+		else {
+			System.err.println("Unable to get Room Icon");
+			return new Media(this.client,"mxc://matrix.org/000000000000000000000000");					  
+		}
+	}
 
 }

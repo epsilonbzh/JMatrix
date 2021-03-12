@@ -11,7 +11,7 @@ public class Media {
 	 * @param mediaLink MXC link, like mxc://matrix.org/bla bla...
 	 */
 	public Media(MatrixSDK sdk,String mediaLink) {
-		this.mediaLink = mediaLink;
+		this.mediaLink = mediaLink;	
 		this.sdk = sdk;
 	}
 	/** get a MXC link, like mxc://matrix.org/bla bla...
