@@ -6,11 +6,12 @@ JMatrix is a Java SDK for Matrix.org API with easy to use syntax.
   * - [x] Login
   * - [ ] Register 
 * Room interaction 
-  * - [x] Send message
-  * - [x] Send media
-  * - [ ] Recive Message
+  * - [x] Send messages
+  * - [x] Send images
+  * - [ ] Send files
+  * - [x] Retrive messages
 * Room management
-  * - [x] Create and delete Room 
+  * - [x] Create and delete room 
   * - [x] Invite, kick and ban
 * User information
   * - [x] Get username and avatar 
