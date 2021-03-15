@@ -30,6 +30,10 @@ public class Event {
 		return this.eventID;
 	}
 	
+	public Room getRoom() {
+		return this.room;
+	}
+	
 	public String getBody() throws MatrixException {
 		return this.get("body",2);
 	}
