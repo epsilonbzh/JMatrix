@@ -1,6 +1,10 @@
-package fr.epsilonbzh.jmatrix;
+package fr.epsilonbzh.jmatrix.event;
 
 import java.util.ArrayList;
+
+import fr.epsilonbzh.jmatrix.Event;
+import fr.epsilonbzh.jmatrix.MatrixException;
+import fr.epsilonbzh.jmatrix.Room;
 
 public abstract class EventListener {
 	private Room room;
