@@ -6,14 +6,18 @@ import fr.epsilonbzh.jmatrix.Event;
 import fr.epsilonbzh.jmatrix.MatrixException;
 import fr.epsilonbzh.jmatrix.Room;
 
-public abstract class EventListener {
+public abstract class EventListener{
 	private Room room;
-	private static Event lastEvent;
+	private Event lastEvent;
+	private int refresh_cooldown;
+	
 	public EventListener(Room room) {
 		this.room = room;
 	}
-	public abstract void onEvent(Event event);
-	public void run(int refresh_cooldown) throws MatrixException {
+	
+	protected abstract void onEvent(Event event) throws MatrixException;
+	
+	private void listen() throws MatrixException {
 		ArrayList<Event> eventlist = room.retriveEvent(2147483647);
 		lastEvent = eventlist.get(eventlist.size() - 1);
 		Event current;
@@ -35,5 +39,24 @@ public abstract class EventListener {
 			
 		}
 	}
-
+	
+	public void start(int cooldown) {
+		refresh_cooldown = cooldown;
+		Thread t = new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				try {
+					listen();
+				} catch (MatrixException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		t.start();
+		
+	}
+		public void start() throws MatrixException {
+			this.start(1000);
+	}
 }
