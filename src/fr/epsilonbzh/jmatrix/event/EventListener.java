@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import fr.epsilonbzh.jmatrix.Event;
 import fr.epsilonbzh.jmatrix.MatrixException;
 import fr.epsilonbzh.jmatrix.Room;
+import fr.epsilonbzh.jmatrix.enums.EventType;
 
 public abstract class EventListener{
 	private Room room;
@@ -17,7 +18,7 @@ public abstract class EventListener{
 	
 	protected abstract void onEvent(Event event) throws MatrixException;
 	
-	private void listen() throws MatrixException {
+	private void listen(EventType type) throws MatrixException {
 		ArrayList<Event> eventlist = room.retriveEvent(2147483647);
 		lastEvent = eventlist.get(eventlist.size() - 1);
 		Event current;
@@ -29,7 +30,13 @@ public abstract class EventListener{
 			}
 			else {
 				lastEvent = current;
-				onEvent(current);
+				if(type == EventType.ALL) {
+					onEvent(current);
+				}else {
+					if(current.getType().equals(type.getType())) {
+						onEvent(current);
+					}
+				}
 			}
 			try {
 				Thread.sleep(refresh_cooldown);
@@ -40,14 +47,14 @@ public abstract class EventListener{
 		}
 	}
 	
-	public void start(int cooldown) {
+	public void start(EventType type,int cooldown) {
 		refresh_cooldown = cooldown;
 		Thread t = new Thread(new Runnable() {
 			
 			@Override
 			public void run() {
 				try {
-					listen();
+					listen(type);
 				} catch (MatrixException e) {
 					e.printStackTrace();
 				}
@@ -56,7 +63,13 @@ public abstract class EventListener{
 		t.start();
 		
 	}
+		public void start(EventType type) throws MatrixException {
+			this.start(type,1000);
+	}
+		public void start(int cooldown) throws MatrixException {
+			this.start(EventType.ALL,cooldown);
+	}
 		public void start() throws MatrixException {
-			this.start(1000);
+			this.start(EventType.ALL,1000);
 	}
 }
