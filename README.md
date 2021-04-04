@@ -17,6 +17,7 @@ JMatrix is a Java SDK for Matrix.org API with easy to use syntax.
   * - [x] Get username and avatar 
 
 # Code Exemple 
+### Setup server and crendentials 
 ```java
   //Import MatrixSDK class and insert your matrix synapse address
   //by default, it retrive 'https://matrix.org'
@@ -26,12 +27,35 @@ JMatrix is a Java SDK for Matrix.org API with easy to use syntax.
   //you can generate a new token with 'System.out.println(sdk.generateNewToken(username, password))'
   String token = "blablabla";
   MatrixClient client = new MatrixClient(sdk,token);
-  
+```
+### Send First Message
+```java
+  String myRoom = "!ARandomString:exemple.com";
   //Send a message in a room
   try {
-    client.getRoomByID("blablabla").sendMessage("Hello World !");
+    client.getRoomByID(myRoom).sendMessage("Hello World !");
   } catch (MatrixException e) {
     e.printStackTrace();
   }
+```
+
+### Listen to a room and react
+```java
+  //Create a Listener
+  EventListener listener = new EventListener(client.getRoomByID(myRoom)) {
+   @Override
+   protected void onEvent(Event event) throws MatrixException {
+    try {
+     if(event.getBody().equals("Hi")) {
+     event.getRoom().sendMessage("Hi" + event.getSender());
+      }
+     }
+     catch (MatrixException e) {
+      e.printStackTrace();
+      }						
+     }
+    };
+    
+    listener.start(EventType.MESSAGE);
 ```
 
