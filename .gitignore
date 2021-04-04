@@ -9,3 +9,6 @@
 #Binaries and Main class 
 bin/
 src/RunJMatrix.java
+
+#Javadoc
+doc/
