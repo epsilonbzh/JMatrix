@@ -5,10 +5,14 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 /**
+ * This class get errors messages about the API
  * @author epsilonbzh
  */
 public class MatrixException extends IOException {
 
+	/**
+	 * @param errorStream error return by the server
+	 */
 	public MatrixException(InputStream errorStream) {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(errorStream));
 		String line;
@@ -21,7 +25,6 @@ public class MatrixException extends IOException {
 			System.err.println(content.toString());
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -30,9 +33,7 @@ public class MatrixException extends IOException {
 		
 	}
 
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
 }
